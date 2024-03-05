@@ -1,0 +1,32 @@
+.movie{
+  width:50%;
+  margin:0 auto;
+}
+
+.back-to-home{
+  color:#FFFFFF;
+}
+
+.movie-content{
+  display:grid;
+  grid-template-columns:25% 75%;
+  gap:12px;
+}
+
+.movie-detail{
+  display:grid;
+  grid-template-columns:200px 1fr;
+  margin-bottom:1px;
+
+  > span{
+    padding:12px;
+    background:rgba(255,255,255,0.05);
+  }
+}
+
+.aligned-right{
+  text-align:right;
+  border-right:1px solid black;
+  background:rgba(255,255,255,0.2);
+
+}

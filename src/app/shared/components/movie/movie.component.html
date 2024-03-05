@@ -1,0 +1,11 @@
+<div class="movie">
+  <h4 class="movie-title">{{movie.title}}</h4>
+  <div class="movie-content">
+    <div class="movie-details">
+      <span>Release date: {{ movie.release_date }}</span>
+      <span>Budget: {{ movie.budget | million }}</span>
+      <span>Duration: {{ movie.duration | duration}}</span>
+    </div>
+    <span><a class="movie-button" [routerLink]="['.', movie.id]"> Details</a></span>
+  </div>
+</div>
