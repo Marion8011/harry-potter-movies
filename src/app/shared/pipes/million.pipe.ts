@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true
 })
 export class MillionPipe implements PipeTransform {
-  transform(value: unknown): string {
+  transform(value: string): string {
     return `$${value} million`;
   }
 }
