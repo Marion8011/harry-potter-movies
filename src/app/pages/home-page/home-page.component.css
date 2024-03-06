@@ -1,10 +1,10 @@
-.movies{
-  width:50%;
-  margin:0 auto;
+.movies {
+  width: 50%;
+  margin: 0 auto;
 }
 
-.movies-filters{
-  border:1px solid white;
-  padding:6px;
-  margin:6px 0;
+.movies-filters {
+  border: 1px solid white;
+  padding: 6px;
+  margin: 6px 0;
 }

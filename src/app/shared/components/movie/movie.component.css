@@ -1,32 +1,31 @@
-.movie{
+.movie {
   display: flex;
   flex-direction: column;
-  border:1px solid white;
-  padding:6px;
-  margin-bottom:6px;
+  border: 1px solid white;
+  padding: 6px;
+  margin-bottom: 6px;
 }
 
-.movie-title{
+.movie-title {
   margin-inline: 0;
   margin-block: 6px;
 }
 
-.movie-content{
+.movie-content {
   display: flex;
   justify-content: space-between;
 }
 
-.movie-details{
+.movie-details {
   display: flex;
   align-items: center;
-  gap:12px;
+  gap: 12px;
 }
 
-.movie-button{
-  display:inline-block;
-  background:white;
-  color:purple;
-  padding:6px 12px;
-  text-align:center;
+.movie-button {
+  display: inline-block;
+  background: white;
+  color: purple;
+  padding: 6px 12px;
+  text-align: center;
 }
-

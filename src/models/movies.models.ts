@@ -1,4 +1,4 @@
-export interface MovieForList{
+export interface MovieForList {
   id: string;
   title: string;
   duration: number;
@@ -6,10 +6,10 @@ export interface MovieForList{
   release_date: string;
 }
 
-export interface Movie extends MovieForList{
+export interface Movie extends MovieForList {
   box_office: string;
   cinematographers: string[];
-  poster:string;
+  poster: string;
   producers: string[];
   summary: string;
 }

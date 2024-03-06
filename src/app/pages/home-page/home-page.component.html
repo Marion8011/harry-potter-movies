@@ -1,19 +1,24 @@
 <div class="movies">
   <div class="movies-filters">
-    <p>Filters</p>
-    <label>Title <input type="text" [(ngModel)]="titleFilterValue" (input)="filterByTitle()"/></label>
-    <label>Release year<input type="text" [(ngModel)]="releaseDateFilterValue" (input)="filterByReleaseDate()" /></label>
+    <h3>Filters</h3>
+    <label>Title <input type="text" [(ngModel)]="titleFilterValue" (input)="filterByTitle()" /></label>
+    <label>
+      Release year<input type="text" [(ngModel)]="releaseDateFilterValue" (input)="filterByReleaseDate()" />
+    </label>
   </div>
-  @if(movies | async; as movies){
-    @if(movies.length){
-      @for(movie of movies; track movie.id){
+  @if (movies | async; as movies) {
+    @if (movies.length) {
+      @for (movie of movies; track movie.id) {
         <app-movie [movie]="movie"></app-movie>
       }
-    } @else{
+    } @else {
       <p>There are no movies corresponding to your search.</p>
     }
-
-  } @else{
-    <p>Sorry, we couldn't find any movies to display</p>
+  } @else {
+    <p>
+      Sorry, we couldn't find any movies to display.
+      <br />
+      You might want to reload the page as the api randomly throws an error.
+    </p>
   }
 </div>
