@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MillionPipe } from '../../pipes/million.pipe';
-import { MovieForList } from '../../../../models/movies.models';
+import { Movie } from '../../../models/movies.models';
 import { RouterLink } from '@angular/router';
 import { DurationPipe } from '../../pipes/duration.pipe';
 
@@ -12,5 +12,5 @@ import { DurationPipe } from '../../pipes/duration.pipe';
   styleUrl: './movie.component.css'
 })
 export class MovieComponent {
-  @Input() movie!: MovieForList;
+  @Input() movie!: Movie;
 }

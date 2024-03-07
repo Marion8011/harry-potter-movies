@@ -2,18 +2,17 @@ import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { setupWorker } from 'msw/browser';
-import { http, HttpHandler, HttpResponse } from 'msw';
-import { Movie } from './models/movies.models';
+import { http, HttpResponse } from 'msw';
 
 bootstrapApplication(AppComponent, appConfig).catch(err => console.error(err));
 
-const handlers: HttpHandler[] = [
+const handlers = [
   http.get('/movies/:id', ({ params }) => {
-    const options: Record<Movie['id'], Movie> = {
+    const options = {
       'e80d5a37-620e-4be2-92b9-fb1f5262494f': {
         id: 'e80d5a37-620e-4be2-92b9-fb1f5262494f',
         title: "Harry Potter and the Philosopher's Stone",
-        duration: 152,
+        duration: '152',
         budget: '125',
         release_date: '2001-11-04',
         box_office: '1.018',
@@ -27,7 +26,7 @@ const handlers: HttpHandler[] = [
       '1e04ad42-c21f-40d3-9a7e-0a521980c192': {
         id: '1e04ad42-c21f-40d3-9a7e-0a521980c192',
         title: 'Harry Potter and the Chamber of Secrets',
-        duration: 161,
+        duration: '161',
         budget: '125',
         release_date: '2002-11-15',
         box_office: '879.6',
@@ -41,7 +40,7 @@ const handlers: HttpHandler[] = [
       'ab80790f-0f6d-4ca7-bd7e-e7e1f06e6982': {
         id: 'ab80790f-0f6d-4ca7-bd7e-e7e1f06e6982',
         title: 'Harry Potter and the Prisoner of Azkaban',
-        duration: 142,
+        duration: '142',
         budget: '130',
         release_date: '2002-11-15',
         box_office: '797.4',
@@ -55,7 +54,7 @@ const handlers: HttpHandler[] = [
       'cae233c5-6b08-4201-a665-194110d9c889': {
         id: 'cae233c5-6b08-4201-a665-194110d9c889',
         title: 'Harry Potter and the Goblet of Fire',
-        duration: 157,
+        duration: '157',
         budget: '150',
         release_date: '2005-11-06',
         box_office: '896.7',
@@ -69,7 +68,7 @@ const handlers: HttpHandler[] = [
       'd8a28625-0704-45fe-9be5-cd795eb1b8f4': {
         id: 'd8a28625-0704-45fe-9be5-cd795eb1b8f4',
         title: 'Harry Potter and the Order of the Phoenix',
-        duration: 138,
+        duration: '138',
         budget: '150-200',
         release_date: '2007-07-11',
         box_office: '942.2',
@@ -83,7 +82,7 @@ const handlers: HttpHandler[] = [
       '37acb245-c015-4bee-be87-c8f7d93d6d24': {
         id: '37acb245-c015-4bee-be87-c8f7d93d6d24',
         title: 'Harry Potter and the Half-Blood Prince',
-        duration: 153,
+        duration: '153',
         budget: '250',
         release_date: '2009-07-07',
         box_office: '934.5',
@@ -97,7 +96,7 @@ const handlers: HttpHandler[] = [
       'e0fcd0ca-609c-4dd0-82e0-020482856380': {
         id: 'e0fcd0ca-609c-4dd0-82e0-020482856380',
         title: 'Harry Potter and the Deathly Hallows - Part 1',
-        duration: 146,
+        duration: '146',
         budget: '250',
         release_date: '2010-11-11',
         box_office: '977',
@@ -111,7 +110,7 @@ const handlers: HttpHandler[] = [
       'ffa6d8a5-4054-46ca-b8e6-9945283c8f18': {
         id: 'ffa6d8a5-4054-46ca-b8e6-9945283c8f18',
         title: 'Harry Potter and the Deathly Hallows – Part 2',
-        duration: 130,
+        duration: '130',
         budget: '250',
         release_date: '2011-07-07',
         box_office: '1,342',
@@ -125,7 +124,7 @@ const handlers: HttpHandler[] = [
       '42f67e56-ec62-4e1a-9c26-04039b0e2494': {
         id: '42f67e56-ec62-4e1a-9c26-04039b0e2494',
         title: 'Fantastic Beasts and Where to Find Them',
-        duration: 133,
+        duration: '133',
         budget: '175-200',
         release_date: '2016-11-10',
         box_office: '814',
@@ -144,7 +143,7 @@ const handlers: HttpHandler[] = [
       '2cc602f2-e544-4f00-aec3-6439fad910b9': {
         id: '2cc602f2-e544-4f00-aec3-6439fad910b9',
         title: 'Fantastic Beasts: The Crimes of Grindelwald',
-        duration: 134,
+        duration: '134',
         budget: '200',
         release_date: '2018-11-16',
         box_office: '654.9',
@@ -163,7 +162,7 @@ const handlers: HttpHandler[] = [
       'bcfd5548-da79-44df-a37b-511aa97d1834': {
         id: 'bcfd5548-da79-44df-a37b-511aa97d1834',
         title: 'Fantastic Beasts: The Secrets of Dumbledore',
-        duration: 142,
+        duration: '142',
         budget: '200',
         release_date: '2022-04-08',
         box_office: '379.8',
@@ -183,82 +182,82 @@ const handlers: HttpHandler[] = [
     // @ts-ignore
     return HttpResponse.json(options[params.id]);
   }),
-  http.get('/movies', () => {
+  http.get('/movies', ({ request, params, cookies }) => {
     return HttpResponse.json([
       {
         id: 'e80d5a37-620e-4be2-92b9-fb1f5262494f',
         title: "Harry Potter and the Philosopher's Stone",
-        duration: 152,
+        duration: '152',
         budget: '125',
         release_date: '2001-11-04'
       },
       {
         id: '1e04ad42-c21f-40d3-9a7e-0a521980c192',
         title: 'Harry Potter and the Chamber of Secrets',
-        duration: 161,
+        duration: '161',
         budget: '125',
         release_date: '2002-11-15'
       },
       {
         id: 'ab80790f-0f6d-4ca7-bd7e-e7e1f06e6982',
         title: 'Harry Potter and the Prisoner of Azkaban',
-        duration: 142,
+        duration: '142',
         budget: '130',
         release_date: '2002-11-15'
       },
       {
         id: 'cae233c5-6b08-4201-a665-194110d9c889',
         title: 'Harry Potter and the Goblet of Fire',
-        duration: 157,
+        duration: '157',
         budget: '150',
         release_date: '2005-11-06'
       },
       {
         id: 'd8a28625-0704-45fe-9be5-cd795eb1b8f4',
         title: 'Harry Potter and the Order of the Phoenix',
-        duration: 138,
+        duration: '138',
         budget: '150-200',
         release_date: '2007-07-11'
       },
       {
         id: '37acb245-c015-4bee-be87-c8f7d93d6d24',
         title: 'Harry Potter and the Half-Blood Prince',
-        duration: 153,
+        duration: '153',
         budget: '250',
         release_date: '2009-07-07'
       },
       {
         id: 'e0fcd0ca-609c-4dd0-82e0-020482856380',
         title: 'Harry Potter and the Deathly Hallows - Part 1',
-        duration: 146,
+        duration: '146',
         budget: '250',
         release_date: '2010-11-11'
       },
       {
         id: 'ffa6d8a5-4054-46ca-b8e6-9945283c8f18',
         title: 'Harry Potter and the Deathly Hallows – Part 2',
-        duration: 130,
+        duration: '130',
         budget: '250',
         release_date: '2011-07-07'
       },
       {
         id: '42f67e56-ec62-4e1a-9c26-04039b0e2494',
         title: 'Fantastic Beasts and Where to Find Them',
-        duration: 133,
+        duration: '133',
         budget: '175-200',
         release_date: '2016-11-10'
       },
       {
         id: '2cc602f2-e544-4f00-aec3-6439fad910b9',
         title: 'Fantastic Beasts: The Crimes of Grindelwald',
-        duration: 134,
+        duration: '134',
         budget: '200',
         release_date: '2018-11-16'
       },
       {
         id: 'bcfd5548-da79-44df-a37b-511aa97d1834',
         title: 'Fantastic Beasts: The Secrets of Dumbledore',
-        duration: 142,
+        duration: '142',
         budget: '200',
         release_date: '2022-04-08'
       }

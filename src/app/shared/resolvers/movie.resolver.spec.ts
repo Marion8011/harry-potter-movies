@@ -3,10 +3,10 @@ import { ResolveFn } from '@angular/router';
 
 import { movieResolver } from './movie.resolver';
 import { Observable } from 'rxjs';
-import { Movie } from '../../../models/movies.models';
+import { MovieDetails } from '../../models/movies.models';
 
 describe('movieResolver', () => {
-  const executeResolver: ResolveFn<Observable<Movie | undefined>> = (
+  const executeResolver: ResolveFn<Observable<MovieDetails | undefined>> = (
     ...resolverParameters
   ) =>
     TestBed.runInInjectionContext(() => movieResolver(...resolverParameters));

@@ -2,13 +2,15 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MoviesService } from '../../services/movies.service';
 import {
   combineLatest,
+  debounceTime,
   distinctUntilChanged,
   map,
   Observable,
   startWith,
-  Subject
+  Subject,
+  tap
 } from 'rxjs';
-import { MovieForList } from '../../../models/movies.models';
+import { Movie } from '../../models/movies.models';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -30,13 +32,16 @@ import { MovieComponent } from '../../shared/components/movie/movie.component';
   styleUrl: './home-page.component.css'
 })
 export class HomePageComponent implements OnInit {
-  movies!: Observable<MovieForList[]>;
+  title = 'harry-potter-movies';
+
+  movies!: Observable<Movie[]>;
 
   searchByTitle = new Subject<string>();
   searchByReleaseYear = new Subject<string>();
 
   titleFilterValue!: string;
   releaseDateFilterValue!: string;
+  searchInProgress = false;
 
   private defaultSearchValue = '';
   private readonly moviesService = inject(MoviesService);
@@ -53,18 +58,29 @@ export class HomePageComponent implements OnInit {
     this.searchByReleaseYear.next(this.releaseDateFilterValue);
   }
 
-  private initializeMovies(): Observable<MovieForList[]> {
+  /*
+   * Here I'm combining the movies observable from the http request with two other observables for the filters
+   * We listen to all observables and as they change (mainly the filter ones) we filter the list of movies with the new values
+   * */
+  private initializeMovies(): Observable<Movie[]> {
     return combineLatest([
       this.searchByReleaseYear.pipe(
         startWith(this.defaultSearchValue),
+        debounceTime(250),
         distinctUntilChanged()
       ),
       this.searchByTitle.pipe(
         startWith(this.defaultSearchValue),
+        debounceTime(250),
         distinctUntilChanged()
       ),
       this.moviesService.getAllMovies()
     ]).pipe(
+      tap(([yearSearch, titleSearch]) => {
+        this.searchInProgress = [yearSearch, titleSearch].some(
+          value => value != this.defaultSearchValue
+        );
+      }),
       map(([yearSearch, titleSearch, movies]) => {
         let filteredMovies = movies;
 

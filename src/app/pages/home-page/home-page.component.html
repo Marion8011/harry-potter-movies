@@ -12,7 +12,11 @@
         <app-movie [movie]="movie"></app-movie>
       }
     } @else {
-      <p>There are no movies corresponding to your search.</p>
+      @if (searchInProgress) {
+        <p>There are no movies corresponding to your search.</p>
+      } @else {
+        <p>There are no movies listed.</p>
+      }
     }
   } @else {
     <p>

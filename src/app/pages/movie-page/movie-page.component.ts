@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Movie } from '../../../models/movies.models';
+import { MovieDetails } from '../../models/movies.models';
 import { MillionPipe } from '../../shared/pipes/million.pipe';
 import { DatePipe } from '@angular/common';
 import { DurationPipe } from '../../shared/pipes/duration.pipe';
@@ -13,5 +13,5 @@ import { DurationPipe } from '../../shared/pipes/duration.pipe';
   styleUrl: './movie-page.component.css'
 })
 export class MoviePageComponent {
-  @Input() movie: Movie | undefined;
+  @Input() movie: MovieDetails | undefined;
 }
