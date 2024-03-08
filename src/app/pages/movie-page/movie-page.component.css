@@ -29,3 +29,19 @@
   border-right: 1px solid black;
   background: rgba(255, 255, 255, 0.2);
 }
+
+.name-list {
+  span {
+    &:after {
+      content: '-';
+      display: inline-block;
+      padding-inline: 6px;
+    }
+
+    &:last-child {
+      &:after {
+        content: none;
+      }
+    }
+  }
+}

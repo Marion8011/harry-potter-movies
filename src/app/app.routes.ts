@@ -16,7 +16,6 @@ export const routes: Routes = [
         c => c.MoviePageComponent
       )
   },
-
   {
     path: '',
     redirectTo: 'films',

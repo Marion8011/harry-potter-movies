@@ -26,17 +26,17 @@
       </div>
       <div class="movie-detail">
         <span class="aligned-right">Producers</span>
-        <span>
+        <span class="name-list">
           @for (producer of movie.producers; track producer) {
-            <span>{{ producer }}</span> -
+            <span>{{ producer }}</span>
           }
         </span>
       </div>
       <div class="movie-detail">
         <span class="aligned-right">Cinematographers</span>
-        <span>
+        <span class="name-list">
           @for (cinematographer of movie.cinematographers; track cinematographer) {
-            <span>{{ cinematographer }}</span> -
+            <span>{{ cinematographer }}</span>
           }
         </span>
       </div>
