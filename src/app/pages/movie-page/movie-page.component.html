@@ -4,13 +4,14 @@
     <h1 class="movie-title">{{ movie.title }}</h1>
     <div class="movie-content">
       <div class="movie-poster">
-        <img [src]="movie.poster" />
+        <img [alt]="movie.title" [src]="movie.poster" />
       </div>
       <div class="movie-summary">
         <p><strong>Summary:</strong> {{ movie.summary }}</p>
       </div>
     </div>
     <div class="movie-details">
+      <h4>Details</h4>
       <div class="movie-detail">
         <span class="aligned-right">Box office</span>
         <span> {{ movie.box_office | million }} </span>
@@ -41,6 +42,9 @@
       </div>
     </div>
   } @else {
-    <p>We couldn't retrieve the movie you are looking for.</p>
+    <p>
+      We couldn't retrieve the movie you are looking for. Check the console, the API may have failed to retrieve the
+      data.
+    </p>
   }
 </div>
